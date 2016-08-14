@@ -43,7 +43,10 @@ echo Server log:
 cat server.log
 rm server.log
 
-mkdir tests/mongodump
-mongodump -h localhost:3101 -d meteor -o ./tests/mongodump
+mkdir -p ./tests/mongodump
+mongodump -h localhost:3101 -d meteor -vvv -o ./tests/mongodump
+ls ./tests/
+ls ./tests/mongodump/
+ls ./tests/mongodump/meteor/
 
 exit $CHIMP_RESULT
