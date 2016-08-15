@@ -44,9 +44,11 @@ cat server.log
 rm server.log
 
 mkdir -p ./tests/mongodump
-mongodump -h localhost:3101 -d meteor -vvv -o ./tests/mongodump
-ls ./tests/
-ls ./tests/mongodump/
-ls ./tests/mongodump/meteor/
+# mongodump does not work, system mongodb and meteor mongodb versions do not match
+#mongodump -h localhost:3101 -d meteor -vvv -o ./tests/mongodump
+# use mongoexport instead; feel free to add more collections
+for collection in "meetingSeries" "minutes"; do
+    mongoexport -h localhost:3101 -d meteor -c $collection -o tests/mongodump/$collection.js
+done
 
 exit $CHIMP_RESULT
