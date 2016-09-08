@@ -47,8 +47,10 @@ mkdir -p ./tests/mongodump
 # mongodump does not work, system mongodb and meteor mongodb versions do not match
 #mongodump -h localhost:3101 -d meteor -vvv -o ./tests/mongodump
 # use mongoexport instead; feel free to add more collections
-for collection in "meetingSeries" "minutes"; do
-    mongoexport -h localhost:3101 -d meteor -c $collection -o tests/mongodump/$collection.js
-done
+#for collection in "meetingSeries" "minutes"; do
+#    mongoexport -h localhost:3101 -d meteor -c $collection -o tests/mongodump/$collection.js
+#done
+# mongoexport does not work either... use a custom script to dump collections
+node ./tests/support/dumpDatabase.js
 
 exit $CHIMP_RESULT
