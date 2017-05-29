@@ -23,17 +23,12 @@ echo ""
 
 #### Prepare settings.json
 settingsfile=./4minitz_settings.json
-if [ -f "$settingsfile" ]
-then
-    echo "$settingsfile found on your local host directory."
-else
-    echo "Patching $settingsfile"
-    cp ../settings_sample.json $settingsfile
-    sed -i '' 's/"ROOT_URL": "[^\"]*"/"ROOT_URL": "http:\/\/localhost:3100"/' $settingsfile
-    sed -i '' 's/"topLeftLogoHTML": "[^\"]*"/"topLeftLogoHTML": "4Minitz [Docker]"/' $settingsfile
-    sed -i '' 's/"mongodumpTargetDirectory": "[^\"]*"/"mongodumpTargetDirectory": "\/4minitz_storage\/mongodump"/' $settingsfile
-    sed -i '' 's/"storagePath": "[^\"]*"/"storagePath": "\/4minitz_storage\/attachments"/' $settingsfile
-fi
+echo "Patching $settingsfile"
+cp ../settings_sample.json $settingsfile
+sed -i '' 's/"ROOT_URL": "[^\"]*"/"ROOT_URL": "http:\/\/localhost:3100"/' $settingsfile
+sed -i '' 's/"topLeftLogoHTML": "[^\"]*"/"topLeftLogoHTML": "4Minitz [Docker]"/' $settingsfile
+sed -i '' 's/"mongodumpTargetDirectory": "[^\"]*"/"mongodumpTargetDirectory": "\/4minitz_storage\/mongodump"/' $settingsfile
+sed -i '' 's/"storagePath": "[^\"]*"/"storagePath": "\/4minitz_storage\/attachments"/' $settingsfile
 
 
 #### Build 4Minitz with meteor
